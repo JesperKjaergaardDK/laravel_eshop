@@ -17,7 +17,7 @@ class ShopItemFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(),
+            'product_name' => fake()->word(),
             //'img',
             'description' => fake()->paragraph(5),
             'price' => fake()->numberBetween(500, 4000),

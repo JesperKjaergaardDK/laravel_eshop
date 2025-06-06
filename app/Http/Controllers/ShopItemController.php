@@ -5,7 +5,8 @@ use App\Models\ShopItem;
 class ShopItemController extends Controller
 {
     public function __invoke() {
-        $shopItems = ShopItem::all();
+        $shopItems = ShopItem::paginate(10);
+
         return view('eshop', compact('shopItems'));        
     }
 }

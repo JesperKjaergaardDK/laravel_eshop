@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopItemController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 
 //Homepage
 Route::get('/', ShopItemController::class)->name('homepage');
+
+Route::get('search', SearchController::class)->name('search');
 
 
 //Login

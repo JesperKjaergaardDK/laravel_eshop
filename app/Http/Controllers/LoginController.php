@@ -9,11 +9,12 @@ class LoginController extends Controller
 {
     public function __invoke(Request $request)
     {
+        dump('error');
+        
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required']
         ]);
-
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();

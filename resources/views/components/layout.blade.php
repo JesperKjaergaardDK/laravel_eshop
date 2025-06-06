@@ -9,21 +9,20 @@
 </head>
 <body>
   <header>
-    <a href="">home</a>
+    <a href="{{route('homepage')}}">home</a>
     
-    <form action="" method="post">
-      @csrf
+    <form action="{{route('search')}}" method="get">
       <label for="">price in between</label>
       <input type="number" placeholder="Min price">
       <input type="number" placeholder="Max price">
     
       <label for="search">Search after item</label>
-      <input autocomplete="off" name="search" type="text">
+      <input autocomplete="off" name="q" type="text" placeholder="Search products...">
     
       <button type="submit">Filter</button>
     </form>
     
-    <a href=""><button type="button">Login</button></a>
+    <a href="{{route('login')}}"><button type="button">Login</button></a>
     
     </header>
   <main>

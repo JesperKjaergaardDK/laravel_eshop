@@ -3,10 +3,12 @@
 <x-layout>
   <div>
     @foreach ($shopItems as $item)
-      <p>{{ $item->name }}</p>
+      <p>{{ $item->product_name }}</p>
       <p>{{ $item->description }}</p>
       <p>{{ $item->price }}</p>
       <p>{{ $item->quantity }}</p>
     @endforeach
   </div>
+
+  {{ $shopItems  }}
 </x-layout>
