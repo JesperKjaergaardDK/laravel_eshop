@@ -1,5 +1,6 @@
 <x-layout>
 
+
     @foreach ($results as $result)
       <p>{{ $result->product_name }}</p>
       <p>{{ $result->description }}</p>

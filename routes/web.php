@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 //Homepage
 Route::get('/', ShopItemController::class)->name('homepage');
 
+
 Route::get('search', SearchController::class)->name('search');
 
 
