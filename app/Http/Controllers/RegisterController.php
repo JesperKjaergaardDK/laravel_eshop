@@ -13,7 +13,7 @@ class RegisterController extends Controller
         if ($request->password != $request->confirm_password) {
             return back()->withErrors([
                 'password' => 'The passwords are not the same.',
-            ])->onlyInput('password');
+            ])->withInput();
         }
 
         $email_exist = User::select('email')->where('email', $request->email)->get();    
@@ -21,7 +21,7 @@ class RegisterController extends Controller
         if (count($email_exist) > 0) {
             return back()->withErrors([
                 'email' => 'The email is already in use.',
-            ])->onlyInput('email');
+            ])->withInput();
         }
 
         $validate = $request->validate([

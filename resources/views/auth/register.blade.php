@@ -11,6 +11,9 @@
 
 <body>
   <h1>Register</h1>
+  <a href="{{route('login')}}"><button type="button">Login</button></a>
+  <a href="{{ route('homepage') }}"><button type="button">forside</button></a>
+
 
   <form action="{{route('registerAttempt')}}" method="POST">
     @csrf
@@ -25,7 +28,7 @@
     <input type="text" name="password" value="{{ old('password') }}">
 
     <label for="">Confirm password</label>
-    <input type="text" name="confirm_password" value="{{ old('confirm_password') }}">
+    <input type="text" name="confirm_password">
 
     <button type="submit">Create</button>
   </form>
