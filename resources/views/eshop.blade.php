@@ -7,8 +7,10 @@
       <p>{{ $item->description }}</p>
       <p>{{ $item->price }}</p>
       <p>{{ $item->quantity }}</p>
+     
+      <a href="{{ route('product', ['id' => $item->id]) }}">View Product</a>
     @endforeach
   </div>
 
-  {{ $shopItems  }}
+  {{ $shopItems }}
 </x-layout>

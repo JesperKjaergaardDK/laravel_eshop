@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ShopItemController;
@@ -41,3 +42,6 @@ Route::get('logout', function (Request $request) {
 
   return redirect('/');
 })->name('logout');
+
+
+Route::get('product/{id}', ProductController::class)->name('product');
