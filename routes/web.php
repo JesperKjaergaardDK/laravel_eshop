@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RegisterController;
@@ -32,8 +33,9 @@ Route::get('register', function () {
 
 Route::post('register', RegisterController::class)->name('registerAttempt');
 
+Route::resource('cart', CartController::class);
 
-//Logout
+//Logoutclear
 Route::get('logout', function (Request $request) {
 
   Auth::logout();
