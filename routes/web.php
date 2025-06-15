@@ -20,7 +20,11 @@ Route::get('search', SearchController::class)->name('search');
 
 //Login
 Route::get('login', function () {
-  return view('auth/login');
+  if (Auth::check()) {
+    return redirect('/');
+  } else {
+    return view('auth/login');
+  }
 })->name('login');
 
 Route::post('login', LoginController::class)->name('loginAttempt');
@@ -36,7 +40,7 @@ Route::post('register', RegisterController::class)->name('registerAttempt');
 Route::resource('cart', CartController::class);
 
 //Logoutclear
-Route::get('logout', function (Request $request) {
+Route::post('logout', function (Request $request) {
 
   Auth::logout();
   $request->session()->invalidate();

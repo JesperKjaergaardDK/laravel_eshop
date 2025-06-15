@@ -11,17 +11,26 @@ class CartController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $cart = $request->session()->get('cart', []);
+        //$shopping_cart = [];
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        foreach ($cart as $product) {
+            $product_id = $product['id'];
+            $shopItem = ShopItem::findOrFail($product_id);
+
+            if ($shopItem) {
+                $shopping_cart[] = [
+                    'product' => $shopItem,
+                    'quantity' => $product['quantity'],
+                ];
+            } else {
+                dd('errror has been made');
+            }
+        }
+
+        return view('shopping_cart', compact('shopping_cart'));
     }
 
     /**
@@ -29,9 +38,9 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $productId = $request->query('product');
+        $product_id = $request->query('product');
 
-        if (!ShopItem::findOrFail($productId)) {
+        if (!ShopItem::findOrFail($product_id)) {
             return back()->withErrors([
                 'error' => 'The product dosent exist.',
             ]);
@@ -39,10 +48,11 @@ class CartController extends Controller
 
         $cart = $request->session()->get('cart', []);
 
-        if (isset($cart[$productId])) {
-            $cart[$productId]['quantity']++;
+        if (isset($cart[$product_id])) {
+            $cart[$product_id]['quantity']++;
         } else {
-            $cart[$productId] = [
+            $cart[$product_id] = [
+                'id' => $product_id,
                 'quantity' => 1,
             ];
         }
@@ -52,27 +62,29 @@ class CartController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $product_id = $request->query('product');
+
+        if (!ShopItem::findOrFail($product_id)) {
+            return back()->withErrors([
+                'error' => 'The product dosent exist.',
+            ]);
+        }
+        
+        $cart = $request->session()->get('cart', []);
+
+        if (true) {
+            $cart[$product_id]['quantity']++;
+        } else {
+            $cart[$product_id]['quantity']++;
+        }
+
+        if ($cart[$product_id]['quantity'] <= 0) {
+            return redirect('destroy');
+        }
     }
 
     /**
@@ -80,6 +92,8 @@ class CartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        ShopItem::deleted($id);
+        
     }
+   
 }

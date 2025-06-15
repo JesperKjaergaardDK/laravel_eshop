@@ -26,7 +26,7 @@ class SearchController extends Controller
         $results = $query->paginate(5)->appends($request->query());
 
         return view('search_items', [
-            'results' => $results,
+            'shopItems' => $results,
             'search' => $search,
             'min_price' => $min,
             'max_price' => $max,
